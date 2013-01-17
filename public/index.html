@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset=utf-8>
   <title>The Tragedy of Hamlet, Prince of Denmark</title>
   <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
-  <style type="text/css">
+<style type="text/css">
 
 body {
   font-family: 'Vollkorn', serif;
   font-size: 18px;
 }
 
-.act {
+h1 {
+  text-align: center;
+}
+
+body {
   width: 540px;
   margin: 0 auto;
 }
@@ -42,12 +46,45 @@ i.stagedir:after, i.parenthetical:after {
   content:")";
 }
 
+.scene p {
+  text-align: left;
+}
+
+.scene {
+    padding: 0;
+    border: none;
+    border-bottom: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+.scene:after {
+    content: "❦";
+    display: inline-block;
+    position: relative;
+    top: 0.8em;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
 b.speaker {
   text-transform: lowercase;
   font-variant: small-caps;
   font-weight: normal;
-  font-size: 110%;
-  content:after:
+  font-size: 120%;
+  content:after:"\00a0\00a0";
+  color: #FF704D;
+  height: 28px;
+  margin: 0;
+}
+
+.scene p, b.speaker {
+}
+
+.act h2 {
+  text-align: center;
 }
 
 b.speaker:after {
