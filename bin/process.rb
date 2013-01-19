@@ -1,6 +1,6 @@
 files_to_process = Dir.glob("src/*.xml")
 require "rexml/document"
-require "erb"
+require "erubis"
 
 def acts(doc)
   acts = []
@@ -19,15 +19,21 @@ end
 
 def pline(l)
   lines= []
+  strip = true
   l.children.each do |c|
     case c.node_type
     when :text
       lines << c
     when :element
-      lines<< {:stagedir => c.text}
+      lines << {:stagedir => c.text}
+      strip = false
     end
   end
-  lines
+  if strip
+    [lines.join("").strip]
+  else
+    lines
+  end
 end
 
 def speech(l)
@@ -67,7 +73,7 @@ def scenes(doc,elem)
 end
 
 index = []
-template = ERB.new(File.read("etc/play.erb"))
+template = Erubis::Eruby.new(File.read("etc/play.erb"))
 files_to_process.each do |f|
   play = {}
   doc = REXML::Document.new(File.new(f))
@@ -90,6 +96,6 @@ files_to_process.each do |f|
   index << {:title => play[:title], :subtitle => play[:subtitle], :file => File.basename(out)}
 end
 index_file = File.new("public/index.html", "w")
-index_temp = ERB.new(File.read("etc/index.erb"))
+index_temp = Erubis::Eruby.new(File.read("etc/index.erb"))
 html = index_temp.result(binding)
 index_file.write html

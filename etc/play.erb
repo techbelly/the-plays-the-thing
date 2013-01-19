@@ -8,40 +8,40 @@
 </head>
 <body>
   <h1><%= play[:title] %></h1>
-  <% for act in play[:acts] %>
+  <%- for act in play[:acts] %>
   <div class="act">
     <h2><%= act[:title] %></h2>
-    <% for scene in act[:scenes] %>
+    <%- for scene in act[:scenes] -%>
     <div class="scene">
       <h3><%= scene[:title] %> </h3>
-      <% for part in scene[:parts] %>
-        <% if part[:stagedir] %>
+      <%- for part in scene[:parts] -%>
+        <%- if part[:stagedir] -%>
           <p class="stagedir"><%= part[:stagedir] %></p>
-        <% else %>
+        <%- else -%>
           <p>
-          <% for speaker in part[:speakers] %>
+          <%- for speaker in part[:speakers] -%>
             <b class="speaker"><%= speaker %></b>
-          <% end %>
-          <% for l in part[:lines] %>
-             <% if l.is_a? Hash %>
+          <%- end -%>
+          <%- for l in part[:lines] -%>
+             <%- if l.is_a? Hash -%>
                <i class="stagedir"><%= l[:stagedir] %></i><br />
-             <% else %>
-               <% for n in l %>
-                  <% if n.is_a? Hash %>
+             <%- else -%>
+               <%- for n in l -%>
+                  <%- if n.is_a? Hash -%>
                      <i class="parenthetical"><%= n[:stagedir] %></i>
-                  <% else %>
+                  <%- else -%>
                      <%= n %>
-                  <% end %>
-                <% end %><br />
-             <% end %>
-          <% end %>
+                  <%- end -%>
+                <%- end -%><br />
+             <%- end -%>
+          <%- end -%>
           </p>
-        <% end %>
-      <% end %>
+        <%- end -%>
+      <%- end -%>
       </div>
-     <% end %> 
+     <%- end -%> 
     </div>
-  <% end %>
+  <%- end -%>
 </body>
 </html>
 
