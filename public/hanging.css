@@ -89,6 +89,10 @@ b.speaker + i.parenthetical:after {
   content:")\00a0";
 }
 
+b.speaker + b.speaker:before {
+ content: "\00a0/\00a0";
+}
+
 
 .scene p b {
   display: block;
