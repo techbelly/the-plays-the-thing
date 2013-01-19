@@ -1,0 +1,97 @@
+body {
+  font-family: 'Averia Serif Libre','Vollkorn', serif;
+  font-size: 18px;
+  background-color: #f5f1e3;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.scene p.stagedir {
+  margin: 21px 0px 21px 150px;
+}
+
+.scene p.stagedir, i.stagedir {
+  display: block;
+  font-style: italic;
+  font-size: 90%;
+}
+
+i.stagedir + br {
+  display: none;
+}
+
+i.stagedir:before, i.parenthetical:before {
+  content:"(";
+}
+
+i.stagedir:after, i.parenthetical:after {
+  content:")";
+}
+
+.scene p {
+  text-align: left;
+}
+
+.scene {
+    padding: 0;
+    border: none;
+    border-bottom: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+.scene:after {
+    content: "❦";
+    display: inline-block;
+    position: relative;
+    top: 0.8em;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background-color: #f5f1e3;
+}
+
+b.speaker {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-weight: normal;
+  position: relative;
+  left: -200px;
+  top: 24px;
+  font-size: 120%;
+  width: 180px;
+  text-align: right;
+  content:after:"\00a0\00a0";
+  color: #b20e0e;
+  height: 28px;
+  margin: 0;
+}
+
+.scene p  {
+  margin-left: 150px;
+}
+.act h2 {
+  text-align: center;
+}
+
+b.speaker:after {
+  content:"\00a0";
+}
+
+b.speaker + i.parenthetical:after {
+  content:")\00a0";
+}
+
+
+.scene p b {
+  display: block;
+}
+
+  

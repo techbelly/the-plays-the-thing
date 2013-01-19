@@ -1,0 +1,120 @@
+body {
+  font-family: 'Vollkorn', serif;
+  font-size: 18px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.playlist {
+  -moz-column-count:3; 
+  -webkit-column-count:3; 
+  column-count:3;
+}
+
+.playlist p {
+    -webkit-column-break-inside:avoid;
+    -moz-column-break-inside:avoid;
+    column-break-inside:avoid;
+}
+
+.caution {
+  font-style: italic;
+  font-size: 90%
+}
+a {
+  color: #b20e0e;
+}
+.caution span.warning {
+  color: #b20e0e;
+}
+
+body {
+  width: 540px;
+  margin: 0 auto;
+}
+
+.scene p.stagedir {
+  text-indent: 0px;
+  margin: 21px;
+}
+
+.scene p.stagedir, i.stagedir {
+  display: block;
+  font-style: italic;
+  font-size: 90%;
+  text-indent: 0px;
+  text-indent: 0px;
+  margin: 21px;
+}
+
+i.stagedir + br {
+  display: none;
+}
+
+i.stagedir:before, i.parenthetical:before {
+  content:"(";
+}
+
+i.stagedir:after, i.parenthetical:after {
+  content:")";
+}
+
+.scene p {
+  text-align: left;
+}
+
+.scene {
+    padding: 0;
+    border: none;
+    border-bottom: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+.scene:after {
+    content: "❦";
+    display: inline-block;
+    position: relative;
+    top: 0.8em;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
+b.speaker {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-weight: normal;
+  font-size: 120%;
+  content:after:"\00a0\00a0";
+  color: #b20e0e;
+  height: 28px;
+  margin: 0;
+}
+
+.scene p, b.speaker {
+}
+
+.act h2 {
+  text-align: center;
+}
+
+b.speaker:after {
+  content:"\00a0";
+}
+
+b.speaker + i.parenthetical:after {
+  content:")\00a0";
+}
+
+.scene p {
+  padding-left: 10px;
+}
+
+.scene p b {
+  text-indent: -10px;
+  display: inline-block;
+}

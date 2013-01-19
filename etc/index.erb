@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Readable Shakespeare Plays</title>
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Readable Shakespeare Plays</h1>
+  <p class="caution"><span class="warning">WARNING:</span> This is an unfinished work in progress made by <a href="http://www.twitter.com/beng">@beng</a>.
+  Enter at your own risk.
+  Nothing too serious, but some of the plays are incomplete and some need a bit of tidying up.
+  If you'd like to help, get in touch or have a peek at the <a href="https://github.com/techbelly/the-plays-the-thing">github project</a>. 
+  </p>
+  
+  <div class="playlist">
+  <% for play in index  %><p>
+    <a href="<%= play[:file] %>"><%= play[:subtitle] %></a><br />
+    <%= play[:title] %>
+    </p>
+  <% end %>
+</div>
+</body>
+</html>
+
