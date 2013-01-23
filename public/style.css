@@ -19,6 +19,10 @@ h1 {
     column-break-inside:avoid;
 }
 
+.playlist p:first-child {
+  margin-top: 0;
+}
+
 .caution {
   font-style: italic;
   font-size: 90%
