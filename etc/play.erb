@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1><%= play[:title] %></h1>
+<%- line_index = 0 %>
 <%- for act in play[:acts] %>
 <div class="act">
 <h2><%= act[:title] %></h2>
@@ -23,6 +24,8 @@
 <b class="speaker"><%= speaker %></b>
 <%-         end -%>
 <%-         for l in part[:lines] -%>
+<%-           line_index += 1 %>
+<span class="line" id="line-<%= line_index %>">
 <%-           if l[:type] == :stagedir -%>
 <i class="<%= l[:type] %>"><%= l[:text].strip %></i><br />
 <%-           else -%>
@@ -32,7 +35,7 @@
 <%-               else -%>
 <%= n[:text].strip %>
 <%-               end -%>
-<%-             end -%><br />
+<%-             end -%><a class="line" href="#line-<%= line_index %>">❦</a></span>
 <%-           end -%>
 <%-         end -%>
 </p>
