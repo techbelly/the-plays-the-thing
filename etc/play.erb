@@ -8,40 +8,39 @@
 </head>
 <body>
   <h1><%= play[:title] %></h1>
-  <%- for act in play[:acts] %>
-  <div class="act">
-    <h2><%= act[:title] %></h2>
-    <%- for scene in act[:scenes] -%>
-    <div class="scene">
-      <h3><%= scene[:title] %> </h3>
-      <%- for part in scene[:parts] -%>
-        <%- if part[:stagedir] -%>
-          <p class="stagedir"><%= part[:stagedir] %></p>
-        <%- else -%>
-          <p>
-          <%- for speaker in part[:speakers] -%>
-            <b class="speaker"><%= speaker %></b>
-          <%- end -%>
-          <%- for l in part[:lines] -%>
-             <%- if l.is_a? Hash -%>
-               <i class="stagedir"><%= l[:stagedir] %></i><br />
-             <%- else -%>
-               <%- for n in l -%>
-                  <%- if n.is_a? Hash -%>
-                     <i class="parenthetical"><%= n[:stagedir] %></i>
-                  <%- else -%>
-                     <%= n %>
-                  <%- end -%>
-                <%- end -%><br />
-             <%- end -%>
-          <%- end -%>
-          </p>
-        <%- end -%>
-      <%- end -%>
-      </div>
-     <%- end -%> 
-    </div>
-  <%- end -%>
+<%- for act in play[:acts] %>
+<div class="act">
+<h2><%= act[:title] %></h2>
+<%-   for scene in act[:scenes] -%>
+<div class="scene">
+<h3><%= scene[:title] %> </h3>
+<%-     for part in scene[:parts] -%>
+<%-       if part[:stagedir] -%>
+<p class="stagedir"><%= part[:stagedir] %></p>
+<%-       else -%>
+<p>
+<%-         for speaker in part[:speakers] -%>
+<b class="speaker"><%= speaker %></b>
+<%-         end -%>
+<%-         for l in part[:lines] -%>
+<%-           if l[:type] == :stagedir -%>
+<i class="<%= l[:type] %>"><%= l[:text].strip %></i><br />
+<%-           else -%>
+<%-             for n in l[:lines] -%>
+<%-               if n[:type] == :parenthetical -%>
+<i class="parenthetical"><%= n[:text].strip %></i>
+<%-               else -%>
+<%= n[:text].strip %>
+<%-               end -%>
+<%-             end -%><br />
+<%-           end -%>
+<%-         end -%>
+</p>
+<%-       end -%>
+<%-     end -%>
+</div>
+<%-   end -%> 
+</div>
+<%- end -%>
 </body>
 </html>
-
