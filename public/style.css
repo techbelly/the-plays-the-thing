@@ -8,8 +8,8 @@ h1 {
 }
 
 .playlist {
-  -moz-column-count:3; 
-  -webkit-column-count:3; 
+  -moz-column-count:3;
+  -webkit-column-count:3;
   column-count:3;
 }
 
@@ -67,6 +67,20 @@ i.stagedir:after, i.parenthetical:after {
 
 .scene p {
   text-align: left;
+}
+
+span.line {
+  display: block;
+}
+
+span.line a {
+  text-decoration: none;
+  display: none;
+}
+
+span.line:hover a {
+  color: #b96d6d; /*#b20e0e; */
+  display: inline;
 }
 
 .scene {

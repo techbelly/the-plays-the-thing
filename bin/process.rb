@@ -10,7 +10,7 @@ def acts(doc)
       act[:title] =  t.text
     end
     act[:prologue] = scenes(a,'PROLOGUE').first
-    act[:scenes] = scenes(a,'SCENE') 
+    act[:scenes] = scenes(a,'SCENE')
     act[:epilogue] = scenes(a,'EPILOGUE').first
     acts << act
   end
@@ -41,11 +41,11 @@ def speech(l)
   l.elements.each do |s|
       case s.name
         when 'SPEAKER'
-          speech[:speakers] << s.text 
+          speech[:speakers] << s.text
         when 'LINE'
-          speech[:lines] << pline(s) 
+          speech[:lines] << pline(s)
         when 'STAGEDIR','SUBHEAD'
-          speech[:lines] << {:stagedir => s.text} 
+          speech[:lines] << {:stagedir => s.text}
       end
   end
   speech
@@ -65,7 +65,7 @@ def scenes(doc,elem)
         when 'SPEECH'
           scene[:parts] << speech(l)
         when 'STAGEDIR','SUBHEAD'
-          scene[:parts] << {:stagedir => l.text} 
+          scene[:parts] << {:stagedir => l.text}
       end
     end
   end
@@ -80,19 +80,20 @@ files_to_process.each do |f|
 
   doc.elements.each('PLAY/TITLE') do |t|
     play[:title] = t.text
-  end 
+  end
   doc.elements.each('PLAY/PLAYSUBT') do |t|
-    play[:subtitle] = t.text 
-  end 
+    play[:subtitle] = t.text
+  end
   play[:prologue] = scenes(doc,'PLAY/PROLOGUE').first
   play[:acts] = acts(doc)
   play[:epilogue] = scenes(doc,'PLAY/EPILOGUE').first
 
   html = template.result(binding)
   puts f
-  out = File.new(f.gsub("xml","html").gsub("src/","public/"),"w")
+  out_path = f.gsub("xml","html").gsub("src/","public/")
+  out = File.new(out_path,"w")
   out.write html
-  puts "WRITING #{out}"
+  puts "WRITING #{out_path}"
   index << {:title => play[:title], :subtitle => play[:subtitle], :file => File.basename(out)}
 end
 index_file = File.new("public/index.html", "w")
