@@ -73,14 +73,21 @@ span.line {
   display: block;
 }
 
-span.line a {
-  text-decoration: none;
-  display: none;
+span.line a:hover {
+  text-decoration: underline;
+  color: #b96d6d; /*#b20e0e; */
 }
 
-span.line:hover a {
-  color: #b96d6d; /*#b20e0e; */
-  display: inline;
+span.line a {
+  color: #ccc; /*#b20e0e; */
+  float: left;
+  text-decoration: none;
+  position: relative;
+  right: 200px;
+  padding: 0px; 
+  width: 0px;
+  text-align: right;
+  display: block;
 }
 
 .scene {

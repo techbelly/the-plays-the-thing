@@ -8,24 +8,26 @@
 </head>
 <body>
   <h1><%= play[:title] %></h1>
-<%- line_index = 0 %>
-<%- for act in play[:acts] %>
+<%- play[:acts].each_with_index do |act, act_idx| %>
 <div class="act">
 <h2><%= act[:title] %></h2>
-<%-   for scene in act[:scenes] -%>
+<%- act[:scenes].each_with_index do |scene, scene_idx| -%>
+<%- line_index = 0 %>
 <div class="scene">
 <h3><%= scene[:title] %> </h3>
 <%-     for part in scene[:parts] -%>
 <%-       if part[:stagedir] -%>
 <p class="stagedir"><%= part[:stagedir] %></p>
+<%-           line_index += 1 %>
 <%-       else -%>
 <p>
 <%-         for speaker in part[:speakers] -%>
 <b class="speaker"><%= speaker %></b>
+<%-           line_index += 1 %>
 <%-         end -%>
 <%-         for l in part[:lines] -%>
 <%-           line_index += 1 %>
-<span class="line" id="line-<%= line_index %>">
+<span class="line" id="<%= act_idx %>-<%= scene_idx %>-<%= line_index %>">
 <%-           if l[:type] == :stagedir -%>
 <i class="<%= l[:type] %>"><%= l[:text].strip %></i><br />
 <%-           else -%>
@@ -35,7 +37,10 @@
 <%-               else -%>
 <%= n[:text].strip %>
 <%-               end -%>
-<%-             end -%><a class="line" href="#line-<%= line_index %>">❦</a>
+<%-             end -%>
+<%-             if line_index % 10 == 0 %>
+  <a class="line" href="#<%= act_idx %>-<%= scene_idx %>-<%= line_index %>"><%= line_index %></a>
+<%-             end %>
 <%-           end -%></span>
 <%-         end -%>
 </p>
