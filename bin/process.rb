@@ -206,7 +206,7 @@ class InMemoryHashCollector < Collector
 end
 
 def find_template(filename)
-  Erubis::Eruby.new(File.read(relative_path(filename)))
+  Erubis::EscapedEruby.new(File.read(relative_path(filename)))
 end
 
 def parse_plays(glob)
