@@ -1,5 +1,5 @@
-SRC_FOLDER = "src/preprocessed"
-DEST_FOLDER = "public"
+SRC_FOLDER = "../src/preprocessed"
+DEST_FOLDER = "../public"
 
 require 'rexml/document'
 require 'erubis'
@@ -200,7 +200,7 @@ class InMemoryHashCollector < Collector
 end
 
 index = []
-template = Erubis::Eruby.new(File.read("etc/play.erb"))
+template = Erubis::Eruby.new(File.read("../etc/play.erb"))
 files_to_process = Dir.glob("#{SRC_FOLDER}/*.xml")
 files_to_process.each do |f|
   doc = REXML::Document.new(File.new(f))
@@ -217,6 +217,6 @@ files_to_process.each do |f|
 end
 
 index_file = File.new("#{DEST_FOLDER}/index.html", "w")
-index_temp = Erubis::Eruby.new(File.read("etc/index.erb"))
+index_temp = Erubis::Eruby.new(File.read("../etc/index.erb"))
 html = index_temp.result(binding)
 index_file.write html
