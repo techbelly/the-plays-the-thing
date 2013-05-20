@@ -1,5 +1,11 @@
-SRC_FOLDER = "src/preprocessed"
-DEST_FOLDER = "public"
+BASE_DIR = ENV["PTT_HOME"] || File.join(File.dirname(__FILE__), "..")
+
+def relative_path(filename)
+  return "#{BASE_DIR}/#{filename}"
+end
+
+SRC_FOLDER = relative_path("src/preprocessed")
+DEST_FOLDER = relative_path("public")
 
 require 'rexml/document'
 require 'erubis'
@@ -199,24 +205,37 @@ class InMemoryHashCollector < Collector
   end
 end
 
-index = []
-template = Erubis::Eruby.new(File.read("etc/play.erb"))
-files_to_process = Dir.glob("#{SRC_FOLDER}/*.xml")
-files_to_process.each do |f|
-  doc = REXML::Document.new(File.new(f))
-  c = InMemoryHashCollector.new
-  p = PlayParser.new(c) 
-  p.scan(doc)
-  play = c.play
-
-  html = template.result(binding)
-  out = File.new(f.gsub("xml","html").gsub("#{SRC_FOLDER}/","#{DEST_FOLDER}/"),"w")
-  out.write html
-  puts "#{f} -> #{File.basename(out)}"
-  index << {:title => play[:title], :subtitle => play[:subtitle], :file => File.basename(out)}
+def find_template(filename)
+  Erubis::Eruby.new(File.read(relative_path(filename)))
 end
 
-index_file = File.new("#{DEST_FOLDER}/index.html", "w")
-index_temp = Erubis::Eruby.new(File.read("etc/index.erb"))
-html = index_temp.result(binding)
-index_file.write html
+def parse_plays(glob)
+  files_to_process = Dir.glob(glob)
+  files_to_process.each do |f|
+    doc = REXML::Document.new(File.new(f))
+    c = InMemoryHashCollector.new
+    p = PlayParser.new(c) 
+    p.scan(doc)
+    yield f, c.play
+  end
+end
+
+def do_templating(template, template_vars, filename)
+  html = template.result(template_vars)
+  out = File.new(filename,"w")
+  out.write html
+  return out
+end
+
+play_template = find_template("etc/play.erb") 
+index_template = find_template("etc/index.erb")
+
+plays = []
+parse_plays("#{SRC_FOLDER}/*.xml") do |file, play|
+  filename = file.gsub("xml","html").gsub("#{SRC_FOLDER}/","#{DEST_FOLDER}/")
+  out = do_templating(play_template, {"play"=>play}, filename)
+  puts "#{File.basename(file)} -> #{File.basename(out)}"
+  plays << {:title => play[:title], :subtitle => play[:subtitle], :file => File.basename(out)}
+end
+
+do_templating(index_template, {"index"=>plays}, "#{DEST_FOLDER}/index.html")
