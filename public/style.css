@@ -1,6 +1,12 @@
+:root {
+  --brand-red: #b20e0e;
+}
+
 body {
   font-family: 'Vollkorn', serif;
-  font-size: 18px;
+  font-size: 1.125rem;
+  max-width: 540px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -8,15 +14,11 @@ h1 {
 }
 
 .playlist {
-  -moz-column-count:3;
-  -webkit-column-count:3;
-  column-count:3;
+  column-count: 3;
 }
 
 .playlist p {
-    -webkit-column-break-inside:avoid;
-    -moz-column-break-inside:avoid;
-    column-break-inside:avoid;
+  break-inside: avoid;
 }
 
 .playlist p:first-child {
@@ -25,31 +27,23 @@ h1 {
 
 .caution {
   font-style: italic;
-  font-size: 90%
+  font-size: 90%;
 }
+
 a {
-  color: #b20e0e;
+  color: var(--brand-red);
 }
+
 .caution span.warning {
-  color: #b20e0e;
+  color: var(--brand-red);
 }
 
-body {
-  width: 540px;
-  margin: 0 auto;
-}
-
-.scene p.stagedir {
-  text-indent: 0px;
-  margin: 21px;
-}
-
-.scene p.stagedir, i.stagedir {
+.scene p.stagedir,
+i.stagedir {
   display: block;
   font-style: italic;
   font-size: 90%;
-  text-indent: 0px;
-  text-indent: 0px;
+  text-indent: 0;
   margin: 21px;
 }
 
@@ -57,56 +51,59 @@ i.stagedir + br {
   display: none;
 }
 
-i.stagedir:before, i.parenthetical:before {
-  content:"(";
+i.stagedir::before,
+i.parenthetical::before {
+  content: "(";
 }
 
-i.stagedir:after, i.parenthetical:after {
-  content:")";
+i.stagedir::after,
+i.parenthetical::after {
+  content: ")";
 }
 
 .scene p {
   text-align: left;
+  padding-left: 10px;
 }
 
 span.line {
   display: block;
 }
 
-span.line a:hover {
-  text-decoration: underline;
-  color: #b96d6d; /*#b20e0e; */
-}
-
 span.line a {
-  color: #ccc; /*#b20e0e; */
+  color: #ccc;
   float: left;
   text-decoration: none;
   position: relative;
   right: 200px;
-  padding: 0px; 
-  width: 0px;
+  padding: 0;
+  width: 0;
   text-align: right;
   display: block;
 }
 
-.scene {
-    padding: 0;
-    border: none;
-    border-bottom: medium double #333;
-    color: #333;
-    text-align: center;
+span.line a:hover {
+  text-decoration: underline;
+  color: #b96d6d;
 }
 
-.scene:after {
-    content: "❦";
-    display: inline-block;
-    position: relative;
-    top: 0.8em;
-    margin: auto;
-    font-size: 1.5em;
-    padding: 0 0.25em;
-    background: white;
+.scene {
+  padding: 0;
+  border: none;
+  border-bottom: medium double #333;
+  color: #333;
+  text-align: center;
+}
+
+.scene::after {
+  content: "❦";
+  display: inline-block;
+  position: relative;
+  top: 0.8em;
+  margin: auto;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
 }
 
 b.speaker {
@@ -114,29 +111,20 @@ b.speaker {
   font-variant: small-caps;
   font-weight: normal;
   font-size: 120%;
-  content:after:"\00a0\00a0";
-  color: #b20e0e;
-  height: 28px;
+  color: var(--brand-red);
   margin: 0;
-}
-
-.scene p, b.speaker {
 }
 
 .act h2 {
   text-align: center;
 }
 
-b.speaker:after {
-  content:"\00a0";
+b.speaker::after {
+  content: "\00a0";
 }
 
-b.speaker + i.parenthetical:after {
-  content:")\00a0";
-}
-
-.scene p {
-  padding-left: 10px;
+b.speaker + i.parenthetical::after {
+  content: ")\00a0";
 }
 
 .scene p b {
