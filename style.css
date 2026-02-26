@@ -68,18 +68,17 @@ i.parenthetical::after {
 
 span.line {
   display: block;
+  position: relative;
 }
 
 span.line a {
-  color: #ccc;
-  float: left;
-  text-decoration: none;
-  position: relative;
-  right: 200px;
-  padding: 0;
-  width: 0;
+  position: absolute;
+  left: -130px;
+  top: 0;
+  width: 80px;
   text-align: right;
-  display: block;
+  color: #ccc;
+  text-decoration: none;
 }
 
 span.line a:hover {
