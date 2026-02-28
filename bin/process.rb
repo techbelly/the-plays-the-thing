@@ -27,9 +27,21 @@ class PlayParser
   def scan(doc)
     doc.elements.each('PLAY/TITLE') do |t|
       @out.play_title t.text
-    end 
+    end
     doc.elements.each('PLAY/PLAYSUBT') do |t|
-      @out.play_subtitle t.text 
+      @out.play_subtitle t.text
+    end
+    doc.elements.each('PLAY/PERSONAE') do |personae|
+      personae.elements.each do |el|
+        case el.name
+        when 'PERSONA'
+          @out.persona el.text
+        when 'PGROUP'
+          names = el.elements.to_a('PERSONA').map(&:text)
+          grpdescr = el.elements.to_a('GRPDESCR').first&.text
+          @out.persona_group names, grpdescr
+        end
+      end
     end 
     if (doc.elements.to_a("PLAY/INDUCT/SCENE").length > 0)
       acts(doc, 'PLAY/INDUCT')
@@ -123,6 +135,16 @@ class InMemoryHashCollector < Collector
   
   def play_subtitle subtitle
     @play[:subtitle] = subtitle
+  end
+
+  def persona name
+    @play[:personae] ||= []
+    @play[:personae] << { name: name }
+  end
+
+  def persona_group names, description
+    @play[:personae] ||= []
+    @play[:personae] << { names: names, description: description }
   end
 
   def start_act 
