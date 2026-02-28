@@ -211,7 +211,7 @@ end
 
 def parse_plays(glob)
   files_to_process = Dir.glob(glob)
-  files_to_process.each do |f|
+  files_to_process.sort.each do |f|
     doc = REXML::Document.new(File.new(f))
     c = InMemoryHashCollector.new
     p = PlayParser.new(c) 
