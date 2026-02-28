@@ -8,8 +8,28 @@
 </head>
 <body>
   <h1><%= play[:title] %></h1>
+<%- if play[:acts].any? { |a| a[:title] } -%>
+<nav class="act-links">
+<%- play[:acts].each_with_index do |act, act_idx| -%>
+<%- next unless act[:title] -%>
+<a href="#act-<%= act_idx %>"><%= act[:title] %></a>
+<%- end -%>
+</nav>
+<%- end -%>
+<%- if play[:personae] -%>
+<div class="personae">
+  <h2>Dramatis Personae</h2>
+<%- for p in play[:personae] -%>
+<%- if p[:name] -%>
+  <p class="persona"><%= p[:name] %></p>
+<%- else -%>
+  <p class="pgroup"><%= p[:names].join(", ") %><br /><i><%= p[:description] %></i></p>
+<%- end -%>
+<%- end -%>
+</div>
+<%- end -%>
 <%- play[:acts].each_with_index do |act, act_idx| %>
-<div class="act">
+<div class="act" id="act-<%= act_idx %>">
 <h2><%= act[:title] %></h2>
 <%- act[:scenes].each_with_index do |scene, scene_idx| -%>
 <%- line_index = 0 %>

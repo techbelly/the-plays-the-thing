@@ -114,8 +114,47 @@ b.speaker {
   margin: 0;
 }
 
-.act h2 {
+.act h2,
+.personae h2 {
   text-align: center;
+}
+
+.act-links {
+  text-align: center;
+  margin: 0.5em 0 1.5em;
+  font-variant: small-caps;
+  font-size: 90%;
+}
+
+.act-links a {
+  margin: 0 0.5em;
+  text-decoration: none;
+  color: var(--brand-red);
+}
+
+.act-links a:hover {
+  text-decoration: underline;
+}
+
+.personae p {
+  margin: 0.2em 0;
+}
+
+.persona,
+.pgroup {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-size: 120%;
+  color: var(--brand-red);
+}
+
+.pgroup i {
+  font-variant: normal;
+  text-transform: none;
+  font-size: 83%;
+  color: #333;
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 b.speaker::after {
