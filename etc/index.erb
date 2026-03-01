@@ -8,12 +8,7 @@
 </head>
 <body>
   <h1>Readable Shakespeare Plays</h1>
-  <p class="caution"><span class="warning">WARNING:</span> This is an unfinished work in progress made by <a href="https://mastodon.social/@beng">@beng</a>.
-  Enter at your own risk.
-  Nothing too serious, but some of the plays are incomplete and some need a bit of tidying up.
-  If you'd like to help, get in touch or have a peek at the <a href="https://github.com/techbelly/the-plays-the-thing">github project</a>. 
-  </p>
-  
+  <p class="made-by">Made by <a href="https://whitebeard.blog">Whitebeard</a></p>
   <div class="playlist">
   <% for play in index  %><p>
     <a href="<%= play[:file] %>"><%= play[:subtitle] %></a><br />
@@ -21,6 +16,12 @@
     </p>
   <% end %>
 </div>
+  <hr>
+  <p class="caution"><span class="warning">WARNING:</span> This is an unfinished work in progress made by <a href="https://mastodon.social/@beng">@beng</a>.
+  Enter at your own risk.
+  Nothing too serious, but some of the plays are incomplete and some need a bit of tidying up.
+  If you'd like to help, get in touch or have a peek at the <a href="https://github.com/techbelly/the-plays-the-thing">github project</a>.
+  </p>
 <script data-goatcounter="https://shake.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

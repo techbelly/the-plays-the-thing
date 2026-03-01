@@ -30,6 +30,12 @@ h1 {
   font-size: 90%;
 }
 
+.made-by {
+  font-size: 75%;
+  color: #999;
+  text-align: center;
+}
+
 a {
   color: var(--brand-red);
 }
